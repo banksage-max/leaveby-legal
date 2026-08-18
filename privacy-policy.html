@@ -10,57 +10,90 @@
 <div class="wrap">
   <div class="eyebrow">Leave By</div>
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: August 17, 2026</p>
+  <p class="updated">Last updated: August 18, 2026</p>
 
   <p>Leave By ("the app," "we," "our") is a personal travel-time alert app. This policy
   explains what information the app handles and how, as of this build.</p>
 
   <div class="card">
-    <strong>Summary:</strong> Leave By currently stores all of your data locally on your
-    device. The app does not operate any servers, does not collect analytics, and does not
-    share your information with anyone.
+    <strong>Summary:</strong> Leave By stores your events and preferences in a private cloud
+    account so your leave-by alerts can reach you even when the app is closed. Your data is
+    visible only to you, is used only to run the app's features, and is never sold, used for
+    advertising, or shared with anyone beyond the two service providers that make the app
+    work (Google Firebase and Mapbox). The app contains no analytics and no trackers.
   </div>
 
-  <h2>Information the app stores</h2>
+  <h2>Information the app stores in your account</h2>
+  <p>When you first open the app, an anonymous account is created for you automatically — no
+  sign-up step, no email required. The following is stored in that account, in Google's
+  Firebase Cloud Firestore (servers located in the United States), protected by security
+  rules so only your signed-in device can read or write it:</p>
   <ul>
-    <li><strong>Event details you enter</strong>: titles, locations (as free text you type),
-    start/end times, event type, and transport mode.</li>
-    <li><strong>App preferences</strong>: your default buffer time, and which transport modes
-    and alert stages are enabled.</li>
+    <li><strong>Event details</strong>: titles, locations (the address text you type, plus
+    the map coordinates it resolves to), start/end times, event type, transport mode,
+    per-event buffer adjustments, and cancelled status.</li>
+    <li><strong>Computed alert schedule</strong>: the times the app has calculated to notify
+    you for each event, stored server-side so alerts fire on time even when the app is
+    closed.</li>
+    <li><strong>Push notification tokens</strong>: the device token needed to deliver
+    notifications to your phone (this identifies the app install, not you personally).</li>
+    <li><strong>App preferences</strong>: default buffer, enabled transport modes and alert
+    stages, and theme are stored on your device.</li>
   </ul>
-  <p>All of the above is stored only in your device's local app storage (not a cloud account).
-  It is never transmitted anywhere, because the app does not currently connect to the internet
-  to do so.</p>
 
-  <h2>Information the app does not currently collect</h2>
+  <h2>Optional: Google Sign-In and Google Calendar</h2>
+  <p>If you connect Google Calendar in Settings (entirely optional):</p>
   <ul>
-    <li>No name, email, or account information — the app does not require sign-in.</li>
-    <li>No location access — the app does not request or use location permissions.</li>
-    <li>No calendar access.</li>
-    <li>No analytics, advertising, or tracking of any kind.</li>
+    <li>Your Google account's basic profile (name, email address) is linked to your Leave By
+    account via Firebase Authentication.</li>
+    <li>The app requests <strong>read-only</strong> access to your Google Calendar and
+    imports upcoming events (the next 7 days) so they get leave-by alerts. Nothing is ever
+    written to your calendar.</li>
+    <li>Google Calendar data is used only inside the app for this purpose and is stored
+    alongside your other events. Disconnecting stops all further calendar access; you can
+    also revoke the app's access anytime at
+    <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
   </ul>
 
-  <h2>Future changes</h2>
-  <p>Leave By is under active development. Planned features will each involve new data
-  handling, and this policy will be updated — with the corresponding permission requested only
-  at the time you use that feature, not before:</p>
+  <h2>Location</h2>
   <ul>
-    <li><strong>Calendar sync</strong> (Google Calendar, Apple Calendar) — will request read
-    access to the calendars you choose to connect, to import events.</li>
-    <li><strong>Live travel-time routing</strong> — will send the origin/destination of an
-    event to Mapbox to compute a route; no other event details leave your device for this.</li>
-    <li><strong>Location</strong> — will request "while using the app" location access only,
-    to recalculate a chained event's route after your previous event ends. Never
-    "Always"/background access.</li>
-    <li><strong>Push notifications and account sync</strong> — will introduce a cloud backend
-    storing your events so alerts can be delivered even when the app is closed. At that point
-    this policy will explain what's stored server-side and how to delete it.</li>
+    <li>Location is requested <strong>only while using the app</strong>, never in the
+    background, and only when you have back-to-back events — so the app can recalculate
+    travel time from where you actually are, instead of your previous event's address.</li>
+    <li>Your position is used for that calculation and is <strong>not stored</strong> — not
+    on your device beyond the moment of use, and not in your account.</li>
   </ul>
+
+  <h2>Route and address processing (Mapbox)</h2>
+  <p>To compute real travel times and turn typed addresses into map coordinates, the app
+  sends the minimum needed — origin/destination coordinates or the address text — from our
+  server to Mapbox, a mapping provider. No event titles, calendar contents, or account
+  details are sent to Mapbox. Mapbox's privacy policy:
+  <a href="https://www.mapbox.com/legal/privacy">mapbox.com/legal/privacy</a>.</p>
+
+  <h2>Service providers</h2>
+  <p>Two third parties process data to make the app work, and only for that purpose:</p>
+  <ul>
+    <li><strong>Google Firebase</strong> (Firestore database, Authentication, Cloud
+    Functions, Cloud Messaging) — stores your account data and delivers notifications.
+    <a href="https://firebase.google.com/support/privacy">firebase.google.com/support/privacy</a></li>
+    <li><strong>Mapbox</strong> (routing and geocoding) — receives coordinates/addresses as
+    described above.</li>
+  </ul>
+  <p>We do not use analytics or advertising SDKs, and we do not sell or share your data with
+  anyone else.</p>
 
   <h2>Data deletion</h2>
-  <p>All data currently lives only on your device. Uninstalling the app deletes all of it.
-  Once cloud sync exists, this section will add in-app and account-level deletion
-  instructions.</p>
+  <ul>
+    <li><strong>Events</strong>: deleting an event in the app deletes it from your cloud
+    account immediately.</li>
+    <li><strong>Everything</strong>: to delete your entire account and all server-side data,
+    email <a href="mailto:leaveby@spikewave.tech">leaveby@spikewave.tech</a> from the account
+    in question and we'll remove it. (In-app account deletion is planned; until then, email
+    works and is honored promptly.)</li>
+    <li>Uninstalling the app removes all on-device data, but your cloud account persists
+    until deleted as above — that's what lets you reinstall without losing your events.</li>
+  </ul>
 
   <h2>Children's privacy</h2>
   <p>Leave By is not directed at children and does not knowingly collect information from
